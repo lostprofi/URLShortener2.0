@@ -15,7 +15,7 @@ router.post('/reg', [
     } else {
       return true;
     }
-  })
+  }),
 ], async (req, res) => {
   const errors = validationResult(req);
 
@@ -24,7 +24,7 @@ router.post('/reg', [
   }
 
   const {
-    username, email, password, links,
+    username, email, password,
   } = req.body;
 
   try {
@@ -40,7 +40,7 @@ router.post('/reg', [
       username,
       email,
       _password: hashPassword,
-      links,
+      links: [],
     });
 
     await user.save();
@@ -51,4 +51,3 @@ router.post('/reg', [
 });
 
 module.exports = router;
-// commit 
