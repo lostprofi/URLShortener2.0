@@ -39,7 +39,7 @@ router.post('/reg', [
     const user = new User({
       username,
       email,
-      _password: hashPassword,
+      password: hashPassword,
       links: [],
     });
 
