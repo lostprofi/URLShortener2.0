@@ -21,6 +21,18 @@ const userSchema = new Schema({
     tags: [String],
     description: String,
   }],
+  tags: [String],
+  description: {
+    type: String,
+  },
+  refreshSessions: [{
+    refreshToken: String,
+    expiresIn: Number,
+    fingerprint: String,
+    userId: String,
+  }],
+
+
 });
 
 const User = mongoose.model('User', userSchema);

@@ -41,6 +41,9 @@ router.post('/reg', [
       email,
       password: hashPassword,
       links: [],
+      tags: [],
+      description: '',
+      refreshSessions: [],
     });
 
     await user.save();
