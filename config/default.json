@@ -1,4 +1,6 @@
 {
     "serverPort": 5000,
-    "mongoURI": "mongodb+srv://Oleg:050591@cluster0-8ftvg.mongodb.net/test?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://Oleg:050591@cluster0-8ftvg.mongodb.net/test?retryWrites=true&w=majority",
+    "accessTokenSecret": "050591",
+    "refreshTokenSecret": "300394"
 }

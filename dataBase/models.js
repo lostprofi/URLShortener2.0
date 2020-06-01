@@ -11,7 +11,7 @@ const userSchema = new Schema({
     type: String,
     require: true,
   },
-  _password: {
+  password: {
     type: String,
     require: true,
   },
@@ -21,6 +21,18 @@ const userSchema = new Schema({
     tags: [String],
     description: String,
   }],
+  tags: [String],
+  description: {
+    type: String,
+  },
+  refreshSessions: [{
+    refreshToken: String,
+    expiresIn: Number,
+    fingerprint: String,
+    userId: String,
+  }],
+
+
 });
 
 const User = mongoose.model('User', userSchema);

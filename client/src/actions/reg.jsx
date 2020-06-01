@@ -2,6 +2,7 @@ import axios from 'axios';
 import alert from './alert';
 
 export default (formData) => async (dispatch) => {
+
   try {
     const body = JSON.stringify(formData);
 
@@ -13,7 +14,7 @@ export default (formData) => async (dispatch) => {
 
     const res = await axios.post('/reg', body, config);
 
-    setTimeout(() => {
+     setTimeout(() => {
       if (res.status === 201) {
         window.location.replace('http://localhost:3000');
       }

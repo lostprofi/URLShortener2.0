@@ -15,7 +15,7 @@ const Header = () => {
           URLShortener 2.0
         </Typography>
         <div>
-          <Button color="inherit" component={Link} to="/reg">Sign In</Button>
+          <Button color="inherit" component={Link} to="/auth">Sign In</Button>
           <Button color="inherit" component={Link} to="/reg">Sign Up</Button>
         </div>
       </Toolbar>

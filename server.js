@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', require('./routes/reg'));
+app.use('/auth', require('./routes/auth'));
 
 app.listen(PORT, () => {
   console.log('Server started on port 5000');
