@@ -38,22 +38,19 @@ router.post(
       const isEqlPwd = await bcrypt.compare(password, user.password);
 
       if (!isEqlPwd) {
-        return res.status(406).json({ error: [{ msg: 'Incorrect password' }] });
+        return res.status(406).json({ errors: [{ msg: 'Incorrect password' }] });
       }
 
       const refreshToken = jwt.sign(
-        { id: user.id, key: uuid() },
-        config.get('refreshTokenSecret'), { expiresIn: '60 days' },
+        { id: user.id, key: uuid(), exp: Math.floor(Date.now() / 1000 + 5184000) },
+        config.get('refreshTokenSecret'),
       );
-
-      const date = new Date();
-      const currentTime = date.getTime();
 
       const refreshSession = {
         userId: user.id,
         refreshToken,
         fingerprint,
-        expiresIn: currentTime + 3600000,
+        expiresIn: Math.floor(Date.now() / 1000 + 5184000),
       };
 
       if (user.refreshSessions.length > 5) {
@@ -68,15 +65,16 @@ router.post(
           id: user.id,
           role: 'user',
         },
+        exp: Math.floor(Date.now() / 1000) + 60,
       };
 
       jwt.sign(payload,
         config.get('accessTokenSecret'),
         (err, token) => res.append(
           'Set-Cookie',
-          `refreshToken=${refreshToken}; PATH={ domain: 'localhost: 5000', path: '/auth'}; HttpOnly`,
-        ).json({ token }),
-        { expiresIn: '0.5h', algorithm: 'RS256' });
+          `refreshToken=${refreshToken}; Path = /; HttpOnly`,
+        ).status(200).json({ token, role: 'user' }),
+        { algorithm: 'RS256' });
     } catch (err) {
       return res.status(500).json({ errors: [{ msg: 'Server error' }] });
     }

@@ -15,16 +15,14 @@ const userSchema = new Schema({
     type: String,
     require: true,
   },
+
   links: [{
     fullURL: String,
     shortenURL: String,
     tags: [String],
     description: String,
   }],
-  tags: [String],
-  description: {
-    type: String,
-  },
+
   refreshSessions: [{
     refreshToken: String,
     expiresIn: Number,

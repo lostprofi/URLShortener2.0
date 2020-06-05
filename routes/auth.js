@@ -2,8 +2,6 @@ const express = require('express');
 
 const authRouter = express.Router();
 
-const app = express();
-
 authRouter.use('/login', require('./auth_routes/login'));
 
 authRouter.use('/logout', require('./auth_routes/logout'));
