@@ -1,12 +1,12 @@
 import axios from 'axios';
-import Fingerprint2 from 'fingerprintjs2';
+import getFingerpint from '../utils/getFingerprint';
 import alert from './alert';
 import { AUTH_SUCCESS, SIGN_OUT } from './actionTypes';
 
 
 // eslint-disable-next-line import/prefer-default-export
 export const login = (formData) => async (dispatch) => {
-  const fingerprint = Fingerprint2.getV18((result) => result);
+  const fingerprint = await getFingerpint();
 
   try {
     const config = {
